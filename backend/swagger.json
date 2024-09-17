@@ -1,0 +1,171 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Your API Title",
+      "version": "1.0.0",
+      "description": "Your API Description"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:5000",
+        "description": "Local server"
+      }
+    ],
+    "paths": {
+      "/api/places": {
+        "get": {
+          "summary": "Retrieve all places",
+          "responses": {
+            "200": {
+              "description": "A list of places",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/Place"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/places/{pid}": {
+        "get": {
+          "summary": "Retrieve a place by ID",
+          "parameters": [
+            {
+              "name": "pid",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              },
+              "description": "The ID of the place to retrieve"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "A place object",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Place"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/users": {
+        "get": {
+          "summary": "Retrieve all users",
+          "responses": {
+            "200": {
+              "description": "A list of users",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/User"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/users/{uid}": {
+        "get": {
+          "summary": "Retrieve a user by ID",
+          "parameters": [
+            {
+              "name": "uid",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              },
+              "description": "The ID of the user to retrieve"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "A user object",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "Place": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string"
+            },
+            "description": {
+              "type": "string"
+            },
+            "image": {
+              "type": "string"
+            },
+            "address": {
+              "type": "string"
+            },
+            "location": {
+              "type": "object",
+              "properties": {
+                "lat": {
+                  "type": "number"
+                },
+                "lng": {
+                  "type": "number"
+                }
+              }
+            },
+            "creator": {
+              "type": "string"
+            }
+          }
+        },
+        "User": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "email": {
+              "type": "string"
+            },
+            "password": {
+              "type": "string"
+            },
+            "image": {
+              "type": "string"
+            },
+            "places": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  
